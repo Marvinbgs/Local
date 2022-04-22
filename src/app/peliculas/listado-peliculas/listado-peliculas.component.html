@@ -1,0 +1,22 @@
+
+<div *ngIf="!peliculas" >
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921">
+</div>
+  
+  <div *ngIf="peliculas?.lenght ==0">
+    <p>No hay peliculas para mostrar</p>
+  </div>
+  
+  <ng-container *ngIf="peliculas && peliculas.length > 0">
+    <div *ngFor="let item of peliculas; let i = index" class="pelicula-contenedor">
+        <div>
+          Pelicula {{i}} : {{item.titulo}} <button style="margin-left: 1rem;" (click)="remover(i)">remover</button>
+        </div>
+        <div>
+          {{item.fechaLanzamiento | date: "dd-MMMM-yyyy" | uppercase}}
+        </div>
+        <div>
+          {{item.precio | currency}}
+        </div>
+      </div>
+  </ng-container>
